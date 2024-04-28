@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        .u-row {
+            display: flex;
+            flex-wrap: nowrap;
+            margin-left: 0;
+            margin-right: 0
+        }
+
+        .u-row .u-col {
+            position: relative;
+            width: 100%;
+            padding-right: 0;
+            padding-left: 0
+        }
+
+        .u-row .u-col.u-col-100 {
+            flex: 0 0 100%;
+            max-width: 100%
+        }
+
+        @media (max-width:767px) {
+            .u-row:not(.no-stack) {
+                flex-wrap: wrap
+            }
+            .u-row:not(.no-stack) .u-col {
+                flex: 0 0 100% !important;
+                max-width: 100% !important
+            }
+        }
+
+        body,
+        html {
+            padding: 0;
+            margin: 0
+        }
+
+        html {
+            box-sizing: border-box
+        }
+
+        *,
+        :after,
+        :before {
+            box-sizing: inherit
+        }
+
+        html {
+            font-size: 14px;
+            -ms-overflow-style: scrollbar;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        p {
+            margin: 0
+        }
+
+        form .error-field {
+            -webkit-animation-name: shake;
+            animation-name: shake;
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both
+        }
+
+        form .error-field input,
+        form .error-field textarea {
+            border-color: #a94442 !important;
+            color: #a94442 !important
+        }
+
+        form .field-error {
+            padding: 5px 10px;
+            font-size: 14px;
+            font-weight: 700;
+            position: absolute;
+            top: -20px;
+            right: 10px
+        }
+
+        form .field-error:after {
+            top: 100%;
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-color: rgba(136, 183, 213, 0);
+            border-top-color: #ebcccc;
+            border-width: 5px;
+            margin-left: -5px
+        }
+
+        form .spinner {
+            margin: 0 auto;
+            width: 70px;
+            text-align: center
+        }
+
+        form .spinner>div {
+            width: 12px;
+            height: 12px;
+            background-color: hsla(0, 0%, 100%, .5);
+            margin: 0 2px;
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            animation: sk-bouncedelay 1.4s infinite ease-in-out both
+        }
+
+        form .spinner .bounce1 {
+            -webkit-animation-delay: -.32s;
+            animation-delay: -.32s
+        }
+
+        form .spinner .bounce2 {
+            -webkit-animation-delay: -.16s;
+            animation-delay: -.16s
+        }
+
+        @-webkit-keyframes sk-bouncedelay {
+            0%,
+            80%,
+            to {
+                -webkit-transform: scale(0)
+            }
+            40% {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes sk-bouncedelay {
+            0%,
+            80%,
+            to {
+                -webkit-transform: scale(0);
+                transform: scale(0)
+            }
+            40% {
+                -webkit-transform: scale(1);
+                transform: scale(1)
+            }
+        }
+
+        @-webkit-keyframes shake {
+            0%,
+            to {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0)
+            }
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                -webkit-transform: translate3d(-10px, 0, 0);
+                transform: translate3d(-10px, 0, 0)
+            }
+            20%,
+            40%,
+            60%,
+            80% {
+                -webkit-transform: translate3d(10px, 0, 0);
+                transform: translate3d(10px, 0, 0)
+            }
+        }
+
+        @keyframes shake {
+            0%,
+            to {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0)
+            }
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                -webkit-transform: translate3d(-10px, 0, 0);
+                transform: translate3d(-10px, 0, 0)
+            }
+            20%,
+            40%,
+            60%,
+            80% {
+                -webkit-transform: translate3d(10px, 0, 0);
+                transform: translate3d(10px, 0, 0)
+            }
+        }
+
+        @media (max-width:480px) {
+            .container {
+                max-width: 100% !important
+            }
+        }
+
+        @media (min-width:481px) and (max-width:768px) {
+            .hide-tablet {
+                display: none !important
+            }
+        }
+
+        .container {
+            width: 100%;
+            padding-right: 0;
+            padding-left: 0;
+            margin-right: auto;
+            margin-left: auto
+        }
+
+        @media (min-width:576px) {
+            .container {
+                max-width: 540px
+            }
+        }
+
+        @media (min-width:768px) {
+            .container {
+                max-width: 720px
+            }
+        }
+
+        @media (min-width:992px) {
+            .container {
+                max-width: 960px
+            }
+        }
+
+        @media (min-width:1200px) {
+            .container {
+                max-width: 1140px
+            }
+        }
+
+        a[onclick] {
+            cursor: pointer
+        }
+
+        body {
+            font-family: Poppins, sans-serif;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #000;
+            background-color: #fff
+        }
+
+        #u_body a {
+            color: #00e;
+            text-decoration: underline
+        }
+
+        #u_body a:hover {
+            color: #00e;
+            text-decoration: underline
+        }
+
+        #u_content_button_1 a:hover {
+            color: #fff !important;
+            background-color: #db292a !important
+        }
+
+        #u_content_button_2 a:hover {
+            color: #fff !important;
+            background-color: #db292a !important
+        }
+
+        @media (max-width:480px) {
+            #u_content_heading_8.v-container-padding-padding {
+                padding: 10px 10px 0 !important
+            }
+            #u_content_heading_8 .v-font-size {
+                font-size: 18px !important
+            }
+            #u_content_heading_8 .v-text-align {
+                text-align: center !important
+            }
+            #u_content_heading_8 .v-line-height {
+                line-height: 120% !important
+            }
+            #u_content_image_1.v-container-padding-padding {
+                padding: 10px 10px 1px !important
+            }
+            #u_content_button_1.v-container-padding-padding {
+                padding: 5px 14px !important
+            }
+            #u_content_button_1 .v-font-size {
+                font-size: 16px !important
+            }
+            #u_content_button_1 .v-line-height {
+                line-height: 170% !important
+            }
+            #u_content_button_1 .v-padding {
+                padding: 10px 20px !important
+            }
+            #u_content_button_1 .v-border-radius {
+                border-radius: 15px !important
+            }
+            #u_content_text_3 .v-text-align {
+                text-align: left !important
+            }
+            #u_content_text_3 .v-line-height {
+                line-height: 120% !important
+            }
+            #u_content_button_2.v-container-padding-padding {
+                padding: 5px 14px 10px !important
+            }
+            #u_content_button_2 .v-font-size {
+                font-size: 16px !important
+            }
+            #u_content_button_2 .v-line-height {
+                line-height: 170% !important
+            }
+        }
+    </style>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+
+    <script>
+        const v_123_pageId = "66253629a1dd906158d0b1df";
+        const v_123_siteId = "660ca5da445619d5026c269b";
+        const v_123_siteType = "HTML";
+        const v_123_slug = null;
+    </script>
+
+
+    <script>
+        const v_123_delayActive = false;
+    </script>
+
+    <script>
+        window.clickmagick_cmc = {
+            uid: '195955',
+            hid: '3727453811',
+            cmc_project: 'Renascer das Cinzas',
+            vid_info: 'on',
+            log_action: '.cta',
+        }
+    </script>
+    <script src="//cdn.clkmc.com/cmc.js"></script>
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '7725005894217049');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+                      <img height="1" width="1" style="display:none" 
+                           src="https://www.facebook.com/tr?id=7725005894217049&ev=PageView&noscript=1"/>
+                    </noscript></head>
+
+<body>
+    <div id="u_body" class="u_body" style="min-height:100vh">
+        <div id="u_row_1" class="u_row" style="padding:0">
+            <div class="container" style="max-width:800px;margin:0 auto">
+                <div class="u-row">
+                    <div id="u_column_1" class="u-col u-col-100 u_column" style="display:flex;border-top:0 solid transparent;border-left:0 solid transparent;border-right:0 solid transparent;border-bottom:0 solid transparent;border-radius:0">
+                        <div style="width:100%;padding:0">
+                            <div id="u_content_heading_8" class="cta v-container-padding-padding" style="overflow-wrap:break-word;padding:10px">
+                                <h1 class="v-text-align v-line-height v-font-size" style="margin:0;line-height:90%;text-align:center;word-wrap:break-word;font-size:46px;font-weight:400"><span><span><span><span><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><span style="line-height:21.6px"><strong>How This&nbsp; <a rel="noopener" href="https://hop.clickbank.net/?custom=1&amp;affiliate=moonscale&amp;vendor=sugardef&amp;pid=new&amp;tid=[cmc_vid]" target="_blank">'Simple Mediterranean Routine'</a>Restored My Figure<br>When Nothing Else Did...</strong></span></span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    <div id="row--36751" data-trigger="none" data-animate="fade" data-delay="500" data-title="1 column row"></div>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="u_row_2" class="u_row" style="padding:0">
+            <div class="container" style="max-width:800px;margin:0 auto">
+                <div class="u-row">
+                    <div id="u_column_2" class="u-col u-col-100 u_column" style="display:flex;border-top:0 solid transparent;border-left:0 solid transparent;border-right:0 solid transparent;border-bottom:0 solid transparent;border-radius:0">
+                        <div style="width:100%;padding:0">
+                            <div id="u_content_image_1" class="cta v-container-padding-padding" style="overflow-wrap:break-word;padding:10px 10px 1px">
+                                <div class="v-text-align" style="position:relative;line-height:0;text-align:center"> <a href="https://hop.clickbank.net/?custom=1&amp;affiliate=moonscale&amp;vendor=sugardef&amp;pid=new&amp;tid=[cmc_vid]" target="_blank"> <img alt="" src="https://123pagebuilder.s3.us-east-1.amazonaws.com/123tapronto1712292756105-1688052835_landerikaria1copy.webp" style="width:100%;max-width:1000px" title=""> </a>                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="u_row_8" class="u_row" style="padding:0">
+            <div class="container" style="max-width:800px;margin:0 auto">
+                <div class="u-row">
+                    <div id="u_column_10" class="u-col u-col-100 u_column" style="display:flex;border-top:0 solid transparent;border-left:0 solid transparent;border-right:0 solid transparent;border-bottom:0 solid transparent;border-radius:0">
+                        <div style="width:100%;padding:0">
+                            <div id="u_content_heading_5" class="u_content_heading v-container-padding-padding" style="overflow-wrap:break-word;padding:9px 10px 20px">
+                                <h1 class="v-text-align v-line-height v-font-size" style="margin:0;line-height:10%;text-align:center;word-wrap:break-word;font-size:10px;font-weight:400"><span><span><span><span style="color:#000;text-align:center;white-space:normal;background-color:#fff;float:none;display:inline;line-height:1px">🔊&nbsp;</span><strong class="gp-component-id-chrCvWaBIY" style="box-sizing:inherit;overflow-wrap:break-word;color:#000;text-align:center;white-space:normal;background-color:#fff;border:0 solid #adb7c2">Make sure your sound is turned on. Please wait up to 10 seconds for the video to load.</strong></span>
+                                    </span>
+                                    </span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="u_row_9" class="u_row" style="padding:0">
+            <div class="container" style="max-width:800px;margin:0 auto">
+                <div class="u-row">
+                    <div id="u_column_11" class="u-col u-col-100 u_column" style="display:flex;border-top:0 solid transparent;border-left:0 solid transparent;border-right:0 solid transparent;border-bottom:0 solid transparent;border-radius:0">
+                        <div style="width:100%;padding:0">
+                            <div id="u_content_button_1" class="cta v-container-padding-padding" style="overflow-wrap:break-word;padding:14px">
+                                <div class="v-text-align" style="text-align:center"> <a href="https://mwebperfect.com/6568/12290/2/" target="_blank" class="v-line-height v-padding v-border-radius v-font-size" style="color:#fff;background-color:#db292a;border-radius:15px;line-height:170%;display:inline-block;text-decoration:none;text-align:center;padding:10px 20px;width:60%;max-width:100%;word-wrap:break-word;font-size:27px;font-weight:700"> Click Here To Watch The Video </a>                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="u_row_11" class="u_row" style="padding:0">
+            <div class="container" style="max-width:800px;margin:0 auto">
+                <div class="u-row">
+                    <div id="u_column_13" class="u-col u-col-100 u_column" style="display:flex;border-top:0 solid transparent;border-left:0 solid transparent;border-right:0 solid transparent;border-bottom:0 solid transparent;border-radius:0">
+                        <div style="width:100%;padding:0">
+                            <div id="u_content_text_3" class="u_content_text v-container-padding-padding" style="overflow-wrap:break-word;padding:10px">
+                                <div class="v-text-align v-line-height v-font-size" style="font-size:18px;line-height:140%;text-align:left;word-wrap:break-word">
+                                    <div id="row--30106" data-trigger="none" data-animate="fade" data-delay="500" data-title="1 column row">
+                                        <div id="col-full-158" data-col="full" data-trigger="none" data-animate="fade" data-delay="500" data-title="1st column">
+                                            <div>
+                                                <div id="tmp_subheadline-68765" data-de-type="headline" data-de-editing="false" data-title="sub-headline" data-ce="true" data-trigger="none" data-animate="fade" data-delay="500" data-gramm="false" aria-disabled="false">
+                                                    <h2 data-bold="inherit" data-gramm="false" data-quillbot-element="rx2JE7KoF4VVFDzc8vjAX"><strong>I'm 65, 5'6" and I'm a slim 152... After Years Of Being At 237!</strong></h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p style="line-height:120%" data-id="quill-node-0"><em>Hello! I'm Susan I have been married for 32 years and am grateful for my two amazing children and three beautiful grandchildren.&nbsp;</em></p>
+                                    <div><em><br></em>
+                                        <div><em>Recently, I have discovered a little-known discovery to feel like my younger self again.</em></div>
+                                        <div><em>&nbsp;</em></div>
+                                        <div>&nbsp;When I think back on my 20s and 30s, I remember.</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;✅I had abundant energy</div>
+                                        <div>&nbsp;</div>
+                                        <div>✅A slender figure&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>✅The ability to eat whatever I wanted without gaining&nbsp; weight</div>
+                                        <div>&nbsp;</div>
+                                        <div>✅Staying in shape with minimal exercise</div>
+                                        <div>&nbsp;</div>
+                                        <div>✅Feeling self-assured and at ease in fitted clothing</div>
+                                        <div>&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="u_row_10" class="u_row" style="padding:0">
+            <div class="container" style="max-width:800px;margin:0 auto">
+                <div class="u-row">
+                    <div id="u_column_12" class="u-col u-col-100 u_column" style="display:flex;border-top:0 solid transparent;border-left:0 solid transparent;border-right:0 solid transparent;border-bottom:0 solid transparent;border-radius:0">
+                        <div style="width:100%;padding:0">
+                            <div id="u_content_button_2" class="cta v-container-padding-padding" style="overflow-wrap:break-word;padding:14px 14px 30px">
+                                <div class="v-text-align" style="text-align:center"> <a href="https://mwebperfect.com/6568/12290/2/" target="_blank" class="v-line-height v-padding v-border-radius v-font-size" style="color:#fff;background-color:#db292a;border-radius:15px;line-height:170%;display:inline-block;text-decoration:none;text-align:center;padding:10px 20px;width:auto;max-width:100%;word-wrap:break-word;font-size:27px;font-weight:700"> Click Here To Watch The Video </a>                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="u_row_4" class="u_row" style="background-color:#ecf0f1;padding:0">
+            <div class="container" style="max-width:800px;margin:0 auto">
+                <div class="u-row">
+                    <div id="u_column_4" class="u-col u-col-100 u_column" style="display:flex;border-top:0 solid transparent;border-left:0 solid transparent;border-right:0 solid transparent;border-bottom:0 solid transparent;border-radius:0">
+                        <div style="width:100%;padding:0">
+                            <div id="u_content_heading_1" class="u_content_heading v-container-padding-padding" style="overflow-wrap:break-word;padding:1px">
+                                <h1 class="v-text-align v-line-height v-font-size" style="margin:0;line-height:140%;text-align:center;word-wrap:break-word;font-size:15px;font-weight:400"><span><span><span><span><span><a rel="noopener" href="https://harmonylifehacks.site/privacypolice" target="_blank"><span><span><span><span>Privacy Police</span></span>
+                                    </span>
+                                    </span>
+                                    </a> | <a rel="noopener" href="https://harmonylifehacks.site/termsofservice" target="_blank">Terms of Service</a></span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="u_row_6" class="u_row" style="background-color:#ecf0f1;padding:0">
+            <div class="container" style="max-width:800px;margin:0 auto">
+                <div class="u-row">
+                    <div id="u_column_8" class="u-col u-col-100 u_column" style="display:flex;border-top:0 solid transparent;border-left:0 solid transparent;border-right:0 solid transparent;border-bottom:0 solid transparent;border-radius:0">
+                        <div style="width:100%;padding:0">
+                            <div id="u_content_text_1" class="u_content_text v-container-padding-padding" style="overflow-wrap:break-word;padding:10px">
+                                <div class="v-text-align v-line-height v-font-size" style="font-size:14px;line-height:140%;text-align:center;word-wrap:break-word">
+                                    <p style="line-height:140%"><span style="line-height:19.6px">Copyright © 2022 All Rights Reserved.</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="u_row_7" class="u_row" style="background-color:#ecf0f1;padding:0">
+            <div class="container" style="max-width:800px;margin:0 auto">
+                <div class="u-row">
+                    <div id="u_column_9" class="u-col u-col-100 u_column" style="display:flex;border-top:0 solid transparent;border-left:0 solid transparent;border-right:0 solid transparent;border-bottom:0 solid transparent;border-radius:0">
+                        <div style="width:100%;padding:0">
+                            <div id="u_content_text_2" class="u_content_text v-container-padding-padding" style="overflow-wrap:break-word;padding:10px">
+                                <div class="v-text-align v-line-height v-font-size" style="font-size:14px;line-height:140%;text-align:center;word-wrap:break-word">
+                                    <p style="line-height:140%"><span style="line-height:19.6px">This site is not a part of the Facebook Website or Facebook Inc.</span></p>
+                                    <p style="line-height:140%"><span style="line-height:19.6px">Additionally, this site is NOT endorsed by FAcebook in any way.</span></p>
+                                    <p style="line-height:140%"><span style="line-height:19.6px">FACEBOOK is a trademark of FACEBOOK Inc.</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script async="true" src="https://c1.cdn1tp.net/ghelper/googletagmanager.js"></script>
+</body>
+
+</html>
